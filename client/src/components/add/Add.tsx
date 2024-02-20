@@ -13,8 +13,7 @@ const Add = (props:Props) => {
         e.preventDefault();
 
 
-        //add new item
-        //axios.post(`/api/${slugs}`,{})
+
 
     }
   return (
@@ -27,7 +26,7 @@ const Add = (props:Props) => {
                 .map(column => (
                     <div className="item">
                         <label>{column.headerName}</label>
-                        <input type={column.type} placeholder={column.field} />
+                        <input type={column.type} placeholder={column.headerName} name={column.field} />
                     </div>
                 ))}
                 <button>Send</button>
