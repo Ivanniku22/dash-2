@@ -17,6 +17,21 @@ const pool = new Pool({
     password: '9677',
     port: 5432,
 });
+//user top list
+app.get('/TopBox', async (req, res) => {
+    try {
+        const client = await pool.connect();
+        const result = await client.query('select * from dealer_tbl d LEFT JOIN order_tbl o ON o.dlr_id = d.id');
+        const TopBox = result.rows;
+        client.release();
+        res.json(TopBox);
+    } catch (err) {
+        console.error('Error executing query', err);
+        res.status(500).send('Error retrieving products');
+    }
+
+});
+
 // DB code end //
 app.get('/products', async (req, res) => {
     try {

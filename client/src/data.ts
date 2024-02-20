@@ -186,8 +186,8 @@ export const topDealUsers = [
 export const chartBoxUser = {
   color: "#8884d8",
   icon: "/userIcon.svg",
-  title: "Total Users",
-  number: "11.238",
+  title: "Total employee",
+  number: "10",
   dataKey: "users",
   percentage: 45,
   chartData: [
@@ -221,8 +221,8 @@ export const chartBoxProduct = {
 export const chartBoxRevenue = {
   color: "teal",
   icon: "/revenueIcon.svg",
-  title: "Total Revenue",
-  number: "$56.432",
+  title: "Total Sales",
+  number: "560",
   dataKey: "revenue",
   percentage: -12,
   chartData: [
@@ -238,8 +238,8 @@ export const chartBoxRevenue = {
 export const chartBoxConversion = {
   color: "gold",
   icon: "/conversionIcon.svg",
-  title: "Total Ratio",
-  number: "2.6",
+  title: "Total Orders",
+  number: "20",
   dataKey: "ratio",
   percentage: 12,
   chartData: [
