@@ -14,6 +14,8 @@ import "./styles/global.scss"
 import User from "./pages/user/User";
 import Product from "./pages/product/Product";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Orders from "./pages/orders/Orders";
+import Dealers from "./pages/dealers/Dealers";
 
 
 const queryClient = new QueryClient();
@@ -25,7 +27,7 @@ function App() {
         <Navbar />
         <div className="container">
           <div className="menuContainer">
-            <Menu/>
+            <Menu />
           </div>
           <div className="contentContainer">
             <QueryClientProvider client={queryClient}>
@@ -63,6 +65,22 @@ function App() {
         path:'/products/:id',
         element: <Product />,
       },
+      {
+        path:'/orders',
+        element:<Orders />
+      },
+      {
+        path:'/orders/:id',
+        element: <></>,
+      },
+      {
+        path:'/dealers',
+        element:<Dealers />,
+      },
+      // {
+      //   path:'/dealers/:id',
+      //   element:<Dealer />
+      // },
     ]
   },
   {

@@ -13,8 +13,8 @@ app.use(bodyparser.json())
 const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
-    database: 'teraim',
-    password: '9677',
+    database: 'tera',
+    password: '123456',
     port: 5432,
 });
 //user top list
@@ -88,6 +88,40 @@ app.put('/producetedit/:id', async (req, res) => {
         console.error('Error executing query', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
+});
+
+
+// Orders Get method
+app.get('/orders', async (req, res) => {
+    try {
+        const client = await pool.connect();
+        const result = await client.query('select * from order_tbl o  JOIN user_tbl u on o.sales_e_id = u.user_e_id LEFT JOIN employee_tbl e ON e.id  = u.user_e_id');
+
+        const products = result.rows;
+        client.release();
+        res.json(products);
+    } catch (err) {
+        console.error('Error executing query', err);
+        res.status(500).send('Error retrieving orders');
+    }
+
+});
+
+
+//Dealers Get Method
+app.get('/dealers', async (req, res) => {
+    try {
+        const client = await pool.connect();
+        const result = await client.query('SELECT * FROM dealer_tbl');
+
+        const products = result.rows;
+        client.release();
+        res.json(products);
+    } catch (err) {
+        console.error('Error executing query', err);
+        res.status(500).send('Error retrieving orders');
+    }
+
 });
 
 

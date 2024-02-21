@@ -1,5 +1,4 @@
 import './topBox.scss'
-//import { topDealUsers } from '../../data'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -29,7 +28,7 @@ const TopBox = () => {
                               <div className="email">{user.addressline1}</div>
                         </div>
                     </div>
-                      <span className="amount">${user.id}</span>
+                      <span className="amount">₹ {user.id}</span>
                 </div>
             ))}
         </div>

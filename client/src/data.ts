@@ -35,20 +35,21 @@ export const menu = [
             },
             {
                 id:2,
+                title:'Orders',
+                url:'/orders',
+                icon:'order.svg',
+                
+            },
+            {
+                id:3,
                 title:'Products',
                 url:'/products',
                 icon:'product.svg',
             },
             {
-                id:3,
-                title:'Orders',
-                url:'/orders',
-                icon:'order.svg',
-            },
-            {
-                id:2,
-                title:'Posts',
-                url:'/posts',
+                id:4,
+                title:'Dealers',
+                url:'/dealers',
                 icon:'post2.svg',
             },
         ],
@@ -62,8 +63,8 @@ export const menu = [
         [
             {
                 id:1,
-                title:'Elements',
-                url:'/',
+                title:'Stocks',
+                url:'/stocks',
                 icon:'element.svg'
             },
             {
@@ -72,24 +73,42 @@ export const menu = [
                 url:'/',
                 icon:'note.svg'
             },
-            {
-                id:3,
-                title:'Forms',
-                url:'/',
-                icon:'form.svg'
-            },
-            {
-                id:4,
-                title:'Calendar',
-                url:'/',
-                icon:'calendar.svg'
-            },
-
         ],
     },
+    {
+      id:4,
+      title:'Reports',
+      listItem:
+      [
+        {
+          id:1,
+          title:'Daily',
+          url:'/',
+          icon:'report.svg'
+        },
+        {
+          id:2,
+          title:'Weekly',
+          url:'/',
+          icon:'report.svg'
+        },
+        {
+          id:3,
+          title:'Monthly',
+          url:'/',
+          icon:'report.svg'
+        },
+        {
+          id:4,
+          title:'Yearly',
+          url:'/',
+          icon:'report.svg'
+        },
+      ]
+    },  
 
     {
-        id:4,
+        id:5,
         title:'Maintenance',
         listItem:[
             {
@@ -98,28 +117,15 @@ export const menu = [
                 url:'/',
                 icon:'setting.svg',
             },
-            {
-                id:2,
-                title:'Backups',
-                url:'/',
-                icon:'backup.svg',
-            },
-
         ],
     },
 
     {
-        id:5,
-        title:'Analytics',
+        id:6,
+        title:'Info',
         listItem:[
             {
                 id:1,
-                title:'Charts',
-                url:'/',
-                icon: 'chart.svg',
-            },
-            {
-                id:2,
                 title:'Logs',
                 url:'/',
                 icon:'log.svg',
