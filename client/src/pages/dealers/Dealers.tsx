@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import "./dealers.scss"
 import DataTable from "../../components/dataTable/DataTable"
-import Add from "../../components/add/Add"
 import { GridColDef } from "@mui/x-data-grid" 
 import axios from 'axios';
+
+
 
 const columns : GridColDef[] = [
   {field:"id",headerName:'ID',width:90},
@@ -54,7 +55,6 @@ const columns : GridColDef[] = [
 
 
 const Dealers = () => {
-    const [open, setOpen] = useState(false)
     const [test, setUsers] = useState([]);
     
     useEffect(() => {
@@ -73,10 +73,8 @@ const Dealers = () => {
     <div className="dealer">
       <div className="info">
         <h1>Dealers</h1>
-        <button onClick={() => setOpen(true)}>Add New Dealers</button>
       </div>
       <DataTable slug = 'orders' columns={columns} rows={test}/>
-      {open && <Add slug="order" columns={columns}  setOpen={setOpen} />}
     </div>
   )
 }

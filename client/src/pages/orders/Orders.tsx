@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "./orders.scss"
 import DataTable from "../../components/dataTable/DataTable"
-import Add from "../../components/add/Add"
 import { GridColDef } from "@mui/x-data-grid" 
 import axios from 'axios';
 
@@ -52,7 +51,6 @@ const columns : GridColDef[] = [
 ];
 
 const Orders = () => {
-    const [open, setOpen] = useState(false)
     const [test, setUsers] = useState([]);
 
     useEffect(() => {
@@ -71,10 +69,8 @@ const Orders = () => {
     <div className="orders">
       <div className="info">
         <h1>Orders</h1>
-        <button onClick={() => setOpen(true)}>Add New Order</button>
       </div>
       <DataTable slug = 'orders' columns={columns} rows={test}/>
-      {open && <Add slug="order" columns={columns}  setOpen={setOpen} />}
     </div>
   )
 }
