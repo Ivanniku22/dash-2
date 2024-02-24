@@ -7,51 +7,51 @@ import ProductAdd from "../../components/productAdd/ProductAdd";
 
 
 const columns : GridColDef[] = [
-  {field:"id",headerName:'ID',width:90},
+  {field:"id",headerName:'ID',width:70},
     {
         field: 'cat_id',
         headerName: 'Category',
         type: 'string',
-        width: 250,
+        width: 100,
     },
   {
       field:'part_no',
       headerName:'Part No',
       type:'string',
-      width:250,
+      width:170,
   },
   {
       field:'short_part_no',
       type:'string',
       headerName:'Short Part No',
-      width:150,
+      width:100,
   },
   {
       field:'ah',
       type:'number',
-      headerName:'battery AH',
-      width:200,
+      headerName:'Battery AH',
+      width:120,
   },
   {
       field:'dlr_price',
       type:'number',
       headerName:'Dealer Price',
-      width:200,
+      width:120,
   },
   {
       field:'mrp',
       headerName:'MRP Price',
-      width:200,
+      width:120,
       type:'number',
-    },
-    {
-        field: 'wnty_cat_id',
-        headerName: 'Warrent Year',
-        width: 200,
-        type: 'number',
-    },
+  },
   {
-      field:'p_status',
+      field: 'wnty_cat_id',
+      headerName: 'Warrent Year',
+      width: 120,
+      type: 'number',
+  },
+  {
+    field:'p_status',
     headerName:'Status',
     width:150,
     type:'boolean',

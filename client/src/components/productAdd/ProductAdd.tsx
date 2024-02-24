@@ -44,6 +44,9 @@ const ProductAdd = () => {
                     textColor="inherit"
                     fontWeight="lg"
                     mb={1}
+                    display={'flex'}
+                    alignItems={'center'}
+                    justifyContent={'center'}
                 >
                     Add New Product
                 </Typography>
