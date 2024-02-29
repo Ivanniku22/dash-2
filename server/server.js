@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
-const { Pool } = require('pg');
 const cors = require('cors');
+const pool = require("./Database.js");
+
 app.use(cors());
 
 require('dotenv').config();
@@ -9,14 +10,7 @@ const PORT = process.env.PORT;
 
 const bodyparser = require("body-parser");
 app.use(bodyparser.json())
-// DB code start //
-const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'tera',
-    password: '123456',
-    port: 5432,
-});
+ 
 //user top list
 app.get('/TopBox', async (req, res) => {
     try {
