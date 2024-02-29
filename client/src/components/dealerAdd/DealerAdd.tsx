@@ -1,17 +1,74 @@
-import * as React from 'react';
+import React , {FC,useState} from 'react';
 import Button from '@mui/joy/Button';
 import Modal from '@mui/joy/Modal';
 import ModalClose from '@mui/joy/ModalClose';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import Add  from '@mui/icons-material/Add';
-import { Box, FormControl,Stack, TextField } from '@mui/material';
+import { Form, Formik} from 'formik';
+import * as Yup from "yup"
+import "yup-phone"
+import { Stack} from '@mui/material';
+import Textfield from '../formsUi/TextField'
+import Select from '../formsUi/Select'
+import ButtonWrapper from '../formsUi/Button'
 
-const DealerAdd = () => {
+interface FormValues{
+    dname:string;
+    dsCategory:string;
+    address1:string;
+    address2:string;
+    pno:string;
+    apno:string;
+    area:string;
+    pcode:string;
+}
+
+const initialValues:FormValues ={
+    dname:"",
+    dsCategory:"",
+    address1:"",
+    address2:"",
+    pno:"",
+    apno:"",
+    area:"",
+    pcode:"",
+}
+
+const phoneregex = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
+
+const validationSchema = Yup.object().shape({
+    dname:Yup.string()
+        .min(4,'Too short')
+        .max(20,"Too long")
+        .required("Dealer Name Repuired"),
+    dsCategory:Yup.string()
+        .min(4,'Too short')
+        .max(20,"Too long")
+        .required("Category Required"),
+    address1: Yup.string()
+        .required("Address Required"),
+    address2 : Yup.string(),
+    area: Yup.string()
+        .required("Area Required"),
+    pcode: Yup.string()
+        .required("Postal Code Required"),
+    pno:Yup.string()
+        .matches(phoneregex, "Phone number is invalid")
+        .min(10,"Must be over 10 digits")
+        .max(10,"Must be under 10 digits")
+        .required("Phone Number is Required"),
+    apno: Yup.string()
+        .matches(phoneregex, "Phone number is invalid")
+        .min(10,"Must be over 10 digits")
+        .max(10,"Must be under 10 digits"),
+})
+
+
+
+const DealerAdd: FC<FormValues> = () => {
     const [open, setOpen] = React.useState<boolean>(false);
-    const handleChange = (
-    ) => {
-    };
+    
   return (
     <React.Fragment>
         <Button variant="solid" color="primary" onClick={() => setOpen(true)}style={{width:150}} startDecorator={<Add />}>
@@ -47,63 +104,72 @@ const DealerAdd = () => {
                 >
                     Add New Dealer
                 </Typography>
-                <Stack spacing={2} maxWidth='md'>
-                    <Stack display={'flex'} direction={"row"} spacing={2}>
-                        <FormControl>
-                            <Box
-                                component="form"
-                                sx={{
-                                    '& .MuiTextField-root': { width: '21ch' },
-                                }}
-                                noValidate
-                                autoComplete="on"
-                            >
-                                <TextField variant='outlined' 
-                                    id="outlined-error-helper-text"
-                                    label="Error"
-                                    defaultValue="Hello World"
-                                    helperText="Incorrect entry." />
-                            </Box>
-                        </FormControl>
-                        <FormControl>
-                            <TextField variant='outlined' label='Shop Category' required></TextField>
-                        </FormControl>
-                    </Stack>
-                    
-                    <Stack display={'flex'} direction={"row"} spacing={2}>
-                        <FormControl>
-                            <TextField variant='outlined' label='Address 1' required></TextField>
-                        </FormControl>
-                        <FormControl>
-                            <TextField variant='outlined' label='Address 2' required></TextField>
-                        </FormControl>
-                    </Stack>  
-                    
-                    
-                    <Stack display={'flex'} direction={"row"} spacing={2}>
-                        <FormControl>
-                            <TextField variant='outlined' label='Mobile No' required></TextField>
-                        </FormControl>
-                        <FormControl>
-                            <TextField variant='outlined' label='Alt Mobile No' required></TextField>
-                        </FormControl>
-                    </Stack> 
-                    
-                    
-                    <Stack display={'flex'} direction={"row"} spacing={2}>
-                        <FormControl>
-                            <TextField variant='outlined' label='Area' required></TextField>
-                        </FormControl>
-                        <FormControl>
-                            <TextField variant='outlined' label='Pincode' required></TextField>
-                        </FormControl>
-                    </Stack>  
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={validationSchema}
+                    onSubmit={values => {
+                        console.log(JSON.stringify(values));
+                    }}
+                
+                >
+                    <Form>
+                        <Stack spacing={2} maxWidth={'md'}>
+                            <Stack  direction={'row'} spacing={2} margin={2}>
+                                <Textfield
+                                    name='dname'
+                                    label='Dealer Name'
+                                    type='text'
+                                />
+                                <Textfield
+                                    name='dsCategory'
+                                    label='Shop Category'
+                                    type='text'
+                                />
+                            </Stack>
+                            <Stack  direction={'row'} spacing={2} margin={2}>
+                                <Textfield
+                                    name='address1'
+                                    label='Address Line 1'
+                                    type='text'
+                                />
+                                <Textfield
+                                    name='address2'
+                                    label='Address Line 2'
+                                    type='text'
+                                />
+                            </Stack>
+                            <Stack  direction={'row'} spacing={2} margin={2}>
+                                <Textfield
+                                    name='area'
+                                    label='Area'
+                                    type='text'
+                                />
+                                <Textfield
+                                    name='pcode'
+                                    label='Postal Code'
+                                    type='text'
+                                />
+                            </Stack>
+                            <Stack  direction={'row'} spacing={2} margin={2}>
+                                <Textfield
+                                    name='pno'
+                                    label='Phone No'
+                                    type='text'
+                                />
+                                <Textfield
+                                    name='apno'
+                                    label='Alt Phone No'
+                                    type='text'
+                                />
+                            </Stack>
+                            <ButtonWrapper>
+                                Submit
+                            </ButtonWrapper>
 
-                    
-
-    
-                    <Button type="submit" color='success' onChange={handleChange}>Submit</Button>
-                </Stack>
+                        </Stack>
+                    </Form>
+                </Formik>
+                
                 
             </Sheet>
         </Modal>
