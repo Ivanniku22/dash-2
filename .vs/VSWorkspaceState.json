@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\client",
+    "\\client\\src",
+    "\\client\\src\\components",
+    "\\client\\src\\components\\add",
+    "\\client\\src\\components\\barChartBox",
+    "\\client\\src\\components\\dataTable",
+    "\\client\\src\\pages",
+    "\\client\\src\\pages\\products",
+    "\\server"
+  ],
+  "SelectedNode": "\\client\\src\\components\\add\\Add.tsx",
+  "PreviewInSolutionExplorer": false
+}
