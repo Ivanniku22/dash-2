@@ -1,7 +1,6 @@
 import { GridColDef} from "@mui/x-data-grid";
 import DataTable from "../../components/dataTable/DataTable"
 import "./users.scss"
-import { userRows } from "../../data";
 import UserAdd from "../../components/userAdd/UserAdd";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -57,7 +56,6 @@ const Users = () => {
             .get("http://localhost:5172/users")
             .then(response => {
                 setUsers(response.data);
-                console.log(response.data);
             })
             .catch(error => {
                 console.log(error);
