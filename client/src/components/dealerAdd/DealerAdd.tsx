@@ -10,7 +10,6 @@ import * as Yup from "yup"
 import "yup-phone"
 import { Stack} from '@mui/material';
 import Textfield from '../formsUi/TextField'
-import Select from '../formsUi/Select'
 import ButtonWrapper from '../formsUi/Button'
 
 interface FormValues{
@@ -67,7 +66,7 @@ const validationSchema = Yup.object().shape({
 
 
 const DealerAdd: FC<FormValues> = () => {
-    const [open, setOpen] = React.useState<boolean>(false);
+    const [open, setOpen] = useState<boolean>(false);
     
   return (
     <React.Fragment>
