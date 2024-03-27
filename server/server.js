@@ -13,8 +13,8 @@ app.use(bodyparser.json())
 const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
-    database: 'tera',
-    password: '123456',
+    database: 'Tera',
+    password: 'sqlsurya',
     port: 5432,
 });
 //user top list
