@@ -32,7 +32,7 @@ app.get('/TopBox', async (req, res) => {
 
 });
 
-// DB code end //
+// Get Products //
 app.get('/products', async (req, res) => {
     try {
         const client = await pool.connect();
@@ -46,6 +46,8 @@ app.get('/products', async (req, res) => {
     }
 
 });
+
+
 // add new product 
 app.post('/product_smit', async (req, res) => {
     const { id, cat_id, part_no, short_part_no, ah, stock_qty, dlr_price, mrp, wnty_cat_id, p_status } = req.body;
@@ -61,6 +63,9 @@ app.post('/product_smit', async (req, res) => {
         console.log(client.query)
     }
 });
+
+
+
 // DELETE endpoint
 app.delete('/productdlt/:id', async (req, res) => {
     const pid = req.params.pid;
@@ -75,6 +80,7 @@ app.delete('/productdlt/:id', async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 });
+
 app.put('/producetedit/:id', async (req, res) => {
     const id = req.params.id;
     const { updatedUser } = req.body;
@@ -88,6 +94,22 @@ app.put('/producetedit/:id', async (req, res) => {
         console.error('Error executing query', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
+});
+
+//Users Get method
+app.get('/users', async (req, res) => {
+    try {
+        const client = await pool.connect();
+        const result = await client.query('select * from employee_tbl');
+
+        const products = result.rows;
+        client.release();
+        res.json(products);
+    } catch (err) {
+        console.error('Error executing query', err);
+        res.status(500).send('Error retrieving orders');
+    }
+
 });
 
 

@@ -41,7 +41,7 @@ const DataTable = (props:Props) => {
             initialState={{
             pagination: {
                 paginationModel: {
-                pageSize: 10,
+                pageSize: 5,
                 },
             },
             }}
@@ -52,12 +52,16 @@ const DataTable = (props:Props) => {
                     quickFilterProps:{debounceMs:500},
                 }
             }}
-            pageSizeOptions={[5]}
+            pageSizeOptions={[5,10]}
             checkboxSelection
-            disableRowSelectionOnClick
-            disableColumnFilter
-            disableDensitySelector
-            disableColumnSelector
+            sx={{
+                boxShadow: 2,
+                border: 2,
+                // borderColor: 'primary.light',
+                '& .MuiDataGrid-cell:hover': {
+                    color: 'green',
+                },
+            }}
         />
     </div>
   )

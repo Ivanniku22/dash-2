@@ -10,60 +10,68 @@ import * as Yup from "yup"
 import "yup-phone"
 import { Stack} from '@mui/material';
 import Textfield from '../formsUi/TextField'
-import Select from '../formsUi/Select'
 import ButtonWrapper from '../formsUi/Button'
-import batteryCategoryOptions from '../../data/batteryCategoryOptions.json'
-import statusOptions from '../../data/statusOptions.json'
+
 interface FormValues{
-    bcategory:string;
-    partno:string;
-    spartno:string;
-    batteryAh:string;
-    dprice:string;
-    mrp:string;
-    year:string;
-    pstatus:string;
+    dname:string;
+    dsCategory:string;
+    address1:string;
+    address2:string;
+    pno:string;
+    apno:string;
+    area:string;
+    pcode:string;
 }
 
-const initialValues: FormValues = {
-    bcategory:'',
-    partno:'',
-    spartno:'',
-    batteryAh:'',
-    dprice:'',
-    mrp:'',
-    year:'',
-    pstatus:'',
+const initialValues:FormValues ={
+    dname:"",
+    dsCategory:"",
+    address1:"",
+    address2:"",
+    pno:"",
+    apno:"",
+    area:"",
+    pcode:"",
 }
+
+const phoneregex = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
 
 const validationSchema = Yup.object().shape({
-    bcategory : Yup.string()
-        .required("Battery Category Needed"),
-    partno: Yup.string()
-        .required("Part No Needed"),
-    spartno: Yup.string()
-        .required("Short Part No Needed"),
-    batteryAh: Yup.string()
-        .required("Battery AH Needed"),
-    dprice: Yup.number()
-        .required("Price is Required")
-        .typeError("Please enter valid price"),
-    mrp: Yup.number()
-        .required("Price is Required")
-        .typeError("Please enter valid price"),
-    year: Yup.string()
-        .required("Warranty Year Required"),
-    pstatus: Yup.string()
-        .required("Status is Required")
+    dname:Yup.string()
+        .min(4,'Too short')
+        .max(20,"Too long")
+        .required("Dealer Name Repuired"),
+    dsCategory:Yup.string()
+        .min(4,'Too short')
+        .max(20,"Too long")
+        .required("Category Required"),
+    address1: Yup.string()
+        .required("Address Required"),
+    address2 : Yup.string(),
+    area: Yup.string()
+        .required("Area Required"),
+    pcode: Yup.string()
+        .required("Postal Code Required"),
+    pno:Yup.string()
+        .matches(phoneregex, "Phone number is invalid")
+        .min(10,"Must be over 10 digits")
+        .max(10,"Must be under 10 digits")
+        .required("Phone Number is Required"),
+    apno: Yup.string()
+        .matches(phoneregex, "Phone number is invalid")
+        .min(10,"Must be over 10 digits")
+        .max(10,"Must be under 10 digits"),
 })
 
-const ProductAdd: FC<FormValues> = () => {
+
+
+const DealerAdd: FC<FormValues> = () => {
     const [open, setOpen] = useState<boolean>(false);
     
-    return (
-        <React.Fragment>
+  return (
+    <React.Fragment>
         <Button variant="solid" color="primary" onClick={() => setOpen(true)}style={{width:150}} startDecorator={<Add />}>
-        Add Product
+        Add Dealer
         </Button>
         <Modal
             aria-labelledby="modal-title"
@@ -93,76 +101,79 @@ const ProductAdd: FC<FormValues> = () => {
                     alignItems={'center'}
                     justifyContent={'center'}
                 >
-                    Add New Product
+                    Add New Dealer
                 </Typography>
-                <Formik 
+                <Formik
                     initialValues={initialValues}
-                    onSubmit={values => {
-                        console.log(JSON.stringify(values))
-                    }}
                     validationSchema={validationSchema}
+                    onSubmit={values => {
+                        console.log(JSON.stringify(values));
+                    }}
+                
                 >
                     <Form>
                         <Stack spacing={2} maxWidth={'md'}>
-                            <Stack direction={'row'} spacing={2} margin={2}>
-                                <Select 
-                                    name='bcategory'
-                                    label='Choose a Category'
-                                    options={batteryCategoryOptions}
+                            <Stack  direction={'row'} spacing={2} margin={2}>
+                                <Textfield
+                                    name='dname'
+                                    label='Dealer Name'
+                                    type='text'
                                 />
                                 <Textfield
-                                    name='partno'
-                                    label='Part No'
+                                    name='dsCategory'
+                                    label='Shop Category'
                                     type='text'
                                 />
                             </Stack>
-                            <Stack direction={'row'} spacing={2} margin={2}>
+                            <Stack  direction={'row'} spacing={2} margin={2}>
                                 <Textfield
-                                    name='spartno'
-                                    label='Short Part No'
+                                    name='address1'
+                                    label='Address Line 1'
                                     type='text'
                                 />
                                 <Textfield
-                                    name='batteryAh'
-                                    label='Battery AH'
-                                    type='text'
-                                />
-                            </Stack>
-                            <Stack direction={'row'} spacing={2} margin={2}>
-                                <Textfield
-                                    name='dprice'
-                                    label='Dealer Price'
-                                    type='text'
-                                />
-                                <Textfield
-                                    name='mrp'
-                                    label='MRP Price'
+                                    name='address2'
+                                    label='Address Line 2'
                                     type='text'
                                 />
                             </Stack>
-                            <Stack direction={'row'} spacing={2} margin={2}>
+                            <Stack  direction={'row'} spacing={2} margin={2}>
                                 <Textfield
-                                    name='year'
-                                    label='Warranty Year'
+                                    name='area'
+                                    label='Area'
                                     type='text'
                                 />
-                                <Select 
-                                    name='pstatus'
-                                    label='Status'
-                                    options={statusOptions}
+                                <Textfield
+                                    name='pcode'
+                                    label='Postal Code'
+                                    type='text'
                                 />
                             </Stack>
-
+                            <Stack  direction={'row'} spacing={2} margin={2}>
+                                <Textfield
+                                    name='pno'
+                                    label='Phone No'
+                                    type='text'
+                                />
+                                <Textfield
+                                    name='apno'
+                                    label='Alt Phone No'
+                                    type='text'
+                                />
+                            </Stack>
                             <ButtonWrapper>
                                 Submit
                             </ButtonWrapper>
+
                         </Stack>
                     </Form>
                 </Formik>
+                
+                
             </Sheet>
         </Modal>
         </React.Fragment>
-    )
+  )
 }
 
-export default ProductAdd
+export default DealerAdd

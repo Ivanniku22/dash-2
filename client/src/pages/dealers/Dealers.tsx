@@ -3,6 +3,7 @@ import "./dealers.scss"
 import DataTable from "../../components/dataTable/DataTable"
 import { GridColDef } from "@mui/x-data-grid" 
 import axios from 'axios';
+import DealerAdd from "../../components/dealerAdd/DealerAdd";
 
 
 
@@ -73,6 +74,7 @@ const Dealers = () => {
     <div className="dealer">
       <div className="info">
         <h1>Dealers</h1>
+        <DealerAdd />
       </div>
       <DataTable slug = 'orders' columns={columns} rows={test}/>
     </div>
